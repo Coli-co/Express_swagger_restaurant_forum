@@ -146,14 +146,6 @@ paths:
 
 components:
   schemas:
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-          require: true
-        name:
-          type: string
     Restaurant:
       type: array
       items:
