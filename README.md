@@ -4,7 +4,7 @@
 
 The basic structure of the definitions in YAML, and a sample OpenAPI 2.0 definition written in YAML looks like:
 
-![screenshot](screenShot.jpg)
+![screenshot](./public/screenShot.jpg)
 
 ### Description
 
@@ -50,10 +50,16 @@ cd Express_swagger_restaurant_forum
 npm install
 ```
 
-4. Test API document
+4. Start server
 
 ```
 nodemon index.js
+```
+
+5. Test API document
+
+```
+http://localhost:4000/api-docs/
 ```
 
 ### Creator
