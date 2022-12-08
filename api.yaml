@@ -1,0 +1,199 @@
+swagger: '2.0'
+info:
+  title: Restaurant Forum
+  description: This is API document about restaurant forum.
+  version: 1.0
+  contact:
+    email: awestlifeblue@gmail.com
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+
+schemes: [http, https]
+
+tags:
+  - name: Restaurant
+    description: Data about restaurant
+  - name: Category
+    description: Data about category
+
+paths:
+  # Returning array of restaurants
+  /api/restaurants:
+    get:
+      tags:
+        - Restaurant
+      summary: Return Array of restaurants.
+      description: All restaurant list.
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: '#/components/schemas/Restaurant'
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+
+  # Get specific restaurant by id
+  /api/restaurants/{restaurantId}:
+    get:
+      tags:
+        - Restaurant
+      summary: Find specific restaurant by id
+      description: Return single array of restaurant
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          type: integer
+          enum: [54, 55, 56, 57, 58, 59, 61, 62, 63]
+      responses:
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+    put:
+      tags:
+        - Restaurant
+      summary: Edit specific restaurant by id
+      description: Return array of restaurant after editing
+      parameters:
+        - name: editRestaurant
+          in: body
+          schema:
+            $ref: '#/components/schemas/NewRestaurant'
+      responses:
+        200:
+          description: Success
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+    # Delete restaurant
+    delete:
+      tags:
+        - Restaurant
+      summary: Delete specific restaurant by id
+      description: Return array of restaurant after deleting
+      parameters:
+        - name: restaurantId
+          in: path
+          required: true
+          type: integer
+          enum: [54, 55, 56, 57, 58, 59, 61, 62, 63]
+      responses:
+        200:
+          description: Success
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+
+  #  Create a new restaurant
+  /api/restaurants/new:
+    post:
+      tags:
+        - Restaurant
+      summary: Add a new restaurant
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - name: newrestaurant
+          in: body
+          schema:
+            $ref: '#/components/schemas/NewRestaurant'
+      responses:
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+
+  # Find restaurant by categoryId
+  /api/restaurants/categoryId:
+    get:
+      tags:
+        - Category
+      summary: Find restaurant by categoryId
+      parameters:
+        - name: categoryId
+          in: query
+          type: integer
+          enum: [1, 2, 3, 4, 5, 6, 7]
+      responses:
+        200:
+          description: OK
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+
+  #  Find all category
+  /api/admin/categories:
+    get:
+      tags:
+        - Category
+      summary: Find all categories
+      responses:
+        200:
+          description: Success
+        400:
+          description: User Error
+        500:
+          description: Internal Server Error
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          require: true
+        name:
+          type: string
+    Restaurant:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: integer
+          name:
+            type: string
+          tel:
+            type: string
+          address:
+            type: string
+          openingHours:
+            type: string
+          description:
+            type: string
+          image:
+            type: string
+    NewRestaurant:
+      type: object
+      properties:
+        id:
+          type: integer
+          require: true
+        name:
+          type: string
+          require: true
+        tel:
+          type: string
+          require: true
+        address:
+          type: string
+          require: true
+        openingHours:
+          type: string
+          require: true
+        description:
+          type: string
+          require: true
+        image:
+          type: string
+          require: true
